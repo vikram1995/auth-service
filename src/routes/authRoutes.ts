@@ -1,6 +1,10 @@
 import express from "express";
 import passport from "passport";
-import { registerUser, loginUser } from "../controllers/authController";
+import {
+  registerUser,
+  loginUser,
+  isLoggedIn,
+} from "../controllers/authController";
 import validate from "../middlewares/validationMiddleware";
 import {
   loginUserSchema,
@@ -11,6 +15,7 @@ const router = express.Router();
 
 // Register route
 router.post("/register", validate(registerUserSchema), registerUser);
+router.get("/logged-in-status", isLoggedIn);
 
 // Login route
 router.post(
